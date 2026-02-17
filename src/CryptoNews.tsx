@@ -8,16 +8,16 @@ interface NewsItem {
   published_at: string;
 }
 
-export default function CryptoNews() {
+const CryptoNews = () => {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
+
+  console.log("mount");
 
   useEffect(() => {
     async function loadNews() {
       try {
-        const res = await fetch(
-          "https://api.coingecko.com/api/v3/news"
-        );
+        const res = await fetch("https://api.coingecko.com/api/v3/news");
         const json = await res.json();
         setNews(json.data.slice(0, 8)); // prime 8 news
       } catch (e) {
@@ -52,4 +52,6 @@ export default function CryptoNews() {
       )}
     </div>
   );
-}
+};
+
+export default CryptoNews;
