@@ -17,8 +17,8 @@ const NAVBAR_ITEM = [
 
 const Navbar = () => {
   return (
-    <nav className="nav">
-      <ul>
+    <nav className="ml-2">
+      <ul className="flex">
         {NAVBAR_ITEM.map(({ label, to }) => (
           <li key={label}>
             <NavLink to={to} className="nav-btn">
