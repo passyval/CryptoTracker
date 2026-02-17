@@ -14,21 +14,21 @@ const CryptoNews = () => {
 
   console.log("mount");
 
-  useEffect(() => {
-    async function loadNews() {
-      try {
-        const res = await fetch("https://api.coingecko.com/api/v3/news");
-        const json = await res.json();
-        setNews(json.data.slice(0, 8)); // prime 8 news
-      } catch (e) {
-        console.error("Errore news:", e);
-      } finally {
-        setLoading(false);
-      }
-    }
+  // useEffect(() => {
+  //   async function loadNews() {
+  //     try {
+  //       const res = await fetch("https://api.coingecko.com/api/v3/news");
+  //       const json = await res.json();
+  //       setNews(json.data.slice(0, 8)); // prime 8 news
+  //     } catch (e) {
+  //       console.error("Errore news:", e);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   }
 
-    loadNews();
-  }, []);
+  //   loadNews();
+  // }, []);
 
   return (
     <div className="news card">
