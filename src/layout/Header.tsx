@@ -1,13 +1,24 @@
 import { useEffect, useState } from "react";
+import Navbar from "./Navbar";
 
 interface HeaderProps {
   renderNews: React.ReactNode;
 }
 
 const Header = ({ renderNews }: HeaderProps) => {
-  const [time, setTime] = useState<string>(() =>
-    new Date().toLocaleTimeString(),
+  return (
+    <header className="tv-header">
+      <div className="tv-left">
+        {renderNews}
+        <Navbar />
+      </div>
+      <Cloack />
+    </header>
   );
+};
+
+const Cloack = () => {
+  const [time, setTime] = useState(() => new Date().toLocaleTimeString());
 
   useEffect(() => {
     const t = setInterval(() => setTime(new Date().toLocaleTimeString()), 1000);
@@ -15,19 +26,9 @@ const Header = ({ renderNews }: HeaderProps) => {
   }, []);
 
   return (
-    <header className="tv-header">
-      <div className="tv-left">
-        <nav className="nav">
-          {renderNews}
-          <button className="nav-btn active">Mercato</button>
-          <button className="nav-btn">Preferiti</button>
-          <button className="nav-btn">Portafoglio</button>
-        </nav>
-      </div>
-      <div className="tv-right">
-        <div className="clock">{time}</div>
-      </div>
-    </header>
+    <div className="tv-right">
+      <div className="clock">{time}</div>
+    </div>
   );
 };
 

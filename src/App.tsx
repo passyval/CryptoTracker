@@ -51,10 +51,8 @@ const App = () => {
   return (
     <>
       <Header renderNews={<CryptoNews />} />
-
       <div className="container">
         <Ticker />
-
         <Routes>
           <Route
             path="/"
@@ -70,7 +68,6 @@ const App = () => {
                     />
                   </div>
                 </div>
-
                 <div className="market-grid">
                   <div className="market-table card">
                     <table className="tv-table">
@@ -130,7 +127,6 @@ const App = () => {
                       </tbody>
                     </table>
                   </div>
-
                   <div className="chart-panel card">
                     <h3 className="panel-title">Grafico rapido</h3>
                     <div className="chart-placeholder">
@@ -143,7 +139,6 @@ const App = () => {
               </>
             }
           />
-
           <Route path="/coin/:id" element={<CoinChart />} />
         </Routes>
       </div>
