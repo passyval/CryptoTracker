@@ -5,6 +5,7 @@ import { Ticker } from "./components/Ticker";
 import Header from "./layout/Header";
 import { Home } from "./pages/home";              
 import Favorite from "./pages/home/Favorite";      
+import CryptoNews from "./CryptoNews";
 
 const App = () => {
   return (

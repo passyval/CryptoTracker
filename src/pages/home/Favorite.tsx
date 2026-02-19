@@ -7,7 +7,7 @@ const getCoins = async () => {
 };
 
 const Favorite = () => {
-  // ⭐ Leggo i preferiti salvati nella Home
+  // Leggo i preferiti salvati nella Home
   const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
 
   const { data, isLoading } = useQuery({
@@ -18,7 +18,7 @@ const Favorite = () => {
   if (isLoading) return <div>Caricamento...</div>;
   if (!data) return null;
 
-  // ⭐ Filtro solo le coin preferite
+  // Filtro solo le coin preferite
   const filtered = data.filter((coin: any) => favorites.includes(coin.id));
 
   return (
