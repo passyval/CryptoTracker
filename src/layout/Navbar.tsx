@@ -7,7 +7,7 @@ const NAVBAR_ITEM = [
   },
   {
     label: "Preferiti",
-    to: "/bookmarks",
+    to: "/favorites",   
   },
   {
     label: "Portafoglio",

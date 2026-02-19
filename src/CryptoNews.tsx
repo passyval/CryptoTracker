@@ -1,55 +1,33 @@
-import { useEffect, useState } from "react";
-import "./App.css";
-
-interface NewsItem {
-  title: string;
-  url: string;
-  source: string;
-  published_at: string;
-}
+import { useQuery } from "@tanstack/react-query";
 
 const CryptoNews = () => {
-  const [news, setNews] = useState<NewsItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["crypto-news"],
+    queryFn: async () =>
+      (await fetch(
+        "https://gnews.io/api/v4/search?q=crypto&lang=en&max=8&token=511fd619dd3931db388eeaa4d39801a1"
+      )).json().then(r => r.articles),
+    staleTime: 300000,
+  });
 
-  console.log("mount");
-
-  // useEffect(() => {
-  //   async function loadNews() {
-  //     try {
-  //       const res = await fetch("https://api.coingecko.com/api/v3/news");
-  //       const json = await res.json();
-  //       setNews(json.data.slice(0, 8)); // prime 8 news
-  //     } catch (e) {
-  //       console.error("Errore news:", e);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   }
-
-  //   loadNews();
-  // }, []);
+  if (isLoading) return <div>Caricamento news...</div>;
+  if (isError) return <div>Errore nel caricamento</div>;
 
   return (
     <div className="news card">
       <h3 className="panel-title">📰 News Crypto</h3>
-
-      {loading ? (
-        <div className="loading">Caricamento news...</div>
-      ) : (
-        <ul className="news-list">
-          {news.map((n, i) => (
-            <li key={i} className="news-item">
-              <a href={n.url} target="_blank" rel="noopener noreferrer">
-                <div className="news-title">{n.title}</div>
-                <div className="news-meta">
-                  {n.source} • {new Date(n.published_at).toLocaleDateString()}
-                </div>
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul className="news-list">
+        {data.map((n: any, i: number) => (
+          <li key={i} className="news-item">
+            <a href={n.url} target="_blank">
+              <div className="news-title">{n.title}</div>
+              <div className="news-meta">
+                {n.source.name} • {new Date(n.publishedAt).toLocaleDateString("it-IT")}
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
