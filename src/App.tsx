@@ -1,11 +1,10 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import CoinChart from "./CoinChart";
-import { Ticker } from "./components/Ticker";      // <-- NAMED IMPORT
-import CryptoNews from "./CryptoNews";
+import { Ticker } from "./components/Ticker";      
 import Header from "./layout/Header";
-import { Home } from "./pages/home";               // <-- preso da index.ts
-import Favorite from "./pages/home/Favorite";      // <-- default export
+import { Home } from "./pages/home";              
+import Favorite from "./pages/home/Favorite";      
 
 const App = () => {
   return (
