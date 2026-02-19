@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 export const useFavorites = () => {
-  const [favorites, setFavorites] = useState<string[]>(
-    () => JSON.parse(localStorage.getItem("favorites") || "[]")
+  const [favorites, setFavorites] = useState<string[]>(() =>
+    JSON.parse(localStorage.getItem("favorites") || "[]"),
   );
 
   const toggle = (id: string) => {

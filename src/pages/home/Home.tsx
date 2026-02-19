@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useCoins} from "../../hooks/useCoin";
+import { useCoins } from "../../hooks/useCoin";
 import { useFavorites } from "../../hooks/useFavorite";
-
-
 
 export const Home = ({ renderNews }: { renderNews: React.ReactNode }) => {
   const [search, setSearch] = useState("");
@@ -12,7 +10,7 @@ export const Home = ({ renderNews }: { renderNews: React.ReactNode }) => {
 
   const coins =
     data?.filter((c) =>
-      (c.name + c.symbol).toLowerCase().includes(search.toLowerCase())
+      (c.name + c.symbol).toLowerCase().includes(search.toLowerCase()),
     ) || [];
 
   return (
@@ -36,14 +34,12 @@ export const Home = ({ renderNews }: { renderNews: React.ReactNode }) => {
                 <th>Market Cap</th>
               </tr>
             </thead>
-
             <tbody>
               {isLoading && (
                 <tr>
                   <td colSpan={5}>Caricamento...</td>
                 </tr>
               )}
-
               {!isLoading &&
                 coins.map((c) => (
                   <tr key={c.id}>
@@ -52,7 +48,6 @@ export const Home = ({ renderNews }: { renderNews: React.ReactNode }) => {
                         {favorites.includes(c.id) ? "⭐" : "☆"}
                       </button>
                     </td>
-
                     <td className="coin-info">
                       <img src={c.image} alt={c.name} />
                       <Link to={`/coin/${c.id}`}>
@@ -60,20 +55,22 @@ export const Home = ({ renderNews }: { renderNews: React.ReactNode }) => {
                         <div>{c.symbol.toUpperCase()}</div>
                       </Link>
                     </td>
-
                     <td>${c.current_price.toLocaleString()}</td>
-
-                    <td className={(c.price_change_percentage_24h ?? 0) > 0 ? "green" : "red"}>
+                    <td
+                      className={
+                        (c.price_change_percentage_24h ?? 0) > 0
+                          ? "green"
+                          : "red"
+                      }
+                    >
                       {c.price_change_percentage_24h?.toFixed(2) ?? "N/A"}%
                     </td>
-
                     <td>${c.market_cap.toLocaleString()}</td>
                   </tr>
                 ))}
             </tbody>
           </table>
         </div>
-
         <div className="chart-panel card">
           <h3 className="panel-title">Grafico rapido</h3>
           <div className="chart-placeholder">Seleziona una coin…</div>
